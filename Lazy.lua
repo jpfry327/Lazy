@@ -155,7 +155,7 @@ function Combat()
 		TurnToTarget()
 		Check_Distance()
 		if windower.ffxi.get_player().vitals.tp >1000 and settings.weaponskill_active == true and windower.ffxi.get_mob_by_target('t').distance:sqrt() < 3.0 then
-			windower.send_command(settings.weaponskill)
+			windower.send_command(('input /ws "%s" <t>'):format(settings.weaponskill))
 			isBusy = Action_Delay
 		elseif Can_Cast_Spell(settings.spell) and settings.spell_active == true then
 			Cast_Spell(settings.spell)
@@ -196,7 +196,7 @@ function Cast_Spell(spell)
 	Recasts = windower.ffxi.get_spell_recasts()
 	local myspell = res.spells:with('name',spell)
 	if Recasts[myspell.id] == 0 and not isCasting then
-		windower.send_command(myspell.name)
+		windower.send_command(('input /ma "%s" <t>'):format(myspell.name))
 		isBusy = Action_Delay
 	end
 end
